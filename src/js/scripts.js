@@ -106,6 +106,21 @@ function createOrbit(radius) {
     return orbit;
 }
 
+/*
+function createRings(texture, innerRadius, outerRadius) {
+    const ringGeo = new THREE.RingGeometry(innerRadius, outerRadius, 32);
+    const ringMat = new THREE.MeshBasicMaterial({
+        map: textureLoader.load(texture),
+        side: THREE.DoubleSide,
+        transparent: true
+    });
+    const ring = new THREE.Mesh(ringGeo, ringMat);
+    ring.rotation.x = Math.PI / 2; // Ustawienie nachylenia
+    return ring;
+}
+
+*/
+
 const mercury = createPlanet(mercuryTexture, 3.2, 100, 0.1);
 const venus = createPlanet(venusTexture, 7.93, 200, 0.12);
 const earth = createPlanet(earthTexture, 8.36, 300, 0.15);
@@ -153,6 +168,67 @@ const params = {
 };
 gui.add(params, 'speed', 0.0001, 5).name('Speed');
 
+  
+function selectPlanet(planet) {
+    const infoPanel = document.getElementById('infoPanel');
+    const planetName = document.getElementById('planetName');
+    const planetInfo = document.getElementById('planetInfo');
+  
+    let targetPosition;
+  
+    if (planetData[planet]) {
+      planetName.textContent = planetData[planet].name;
+      planetInfo.textContent = planetData[planet].info;
+      infoPanel.style.display = 'block'; // Show the panel
+      
+      // Set the camera to focus on the selected planet
+      switch(planet) {
+        case 'sun':
+          targetPosition = sun.position.clone();
+          break;
+        case 'mercury':
+          targetPosition = mercury.planet.position.clone();
+          break;
+        case 'venus':
+          targetPosition = venus.planet.position.clone();
+          break;
+        case 'earth':
+          targetPosition = earth.planet.position.clone();
+          break;
+        case 'mars':
+          targetPosition = mars.planet.position.clone();
+          break;
+        case 'jupiter':
+          targetPosition = jupiter.planet.position.clone();
+          break;
+        case 'saturn':
+          targetPosition = saturn.planet.position.clone();
+          break;
+        case 'uranus':
+          targetPosition = uranus.planet.position.clone();
+          break;
+        case 'neptune':
+          targetPosition = neptune.planet.position.clone();
+          break;
+        case 'pluto':
+          targetPosition = pluto.planet.position.clone();
+          break;
+      }
+  
+      // Zoom into the planet by moving the camera closer
+      const zoomDistance = 50; // Adjust distance to get closer to the planet
+      camera.position.copy(targetPosition.multiplyScalar(1.5)); 
+      camera.position.set(targetPosition.x, targetPosition.y, targetPosition.z + zoomDistance); 
+      controls.update();
+  
+    } else {
+      infoPanel.style.display = 'none'; // Hide the panel if no planet selected
+    }
+  }
+  
+
+
+  
 function animate() {
     requestAnimationFrame(animate);
 
@@ -163,16 +239,28 @@ function animate() {
     stars.rotation.z -= 0.0001;
     sun.rotation.y -= 0.003;
 
+    // Przykład dla każdej planety
+
     mercury.planet.rotation.y += (timeScale / mercuryRotationPeriod) * 2 * Math.PI; 
     venus.planet.rotation.y += (timeScale / venusRotationPeriod) * 2 * Math.PI;
     earth.planet.rotation.y += (timeScale / earthRotationPeriod) * 2 * Math.PI;
+    mars.planet.rotation.y += (timeScale / marsRotationPeriod) * 2 * Math.PI;
+    jupiter.planet.rotation.y += (timeScale / jupiterRotationPeriod) * 2 * Math.PI;
+    saturn.planet.rotation.y += (timeScale / saturnRotationPeriod) * 2 * Math.PI;
+    uranus.planet.rotation.y += (timeScale / uranusRotationPeriod) * 2 * Math.PI;
+    neptune.planet.rotation.y += (timeScale / neptuneRotationPeriod) * 2 * Math.PI;
+    pluto.planet.rotation.y += (timeScale / plutoRotationPeriod) * 2 * Math.PI;
 
     mercury.orbit.rotation.y += (timeScale / mercuryOrbitalPeriod) * 2 * Math.PI; 
     venus.orbit.rotation.y += (timeScale / venusOrbitalPeriod) * 2 * Math.PI;
     earth.orbit.rotation.y += (timeScale / earthOrbitalPeriod) * 2 * Math.PI;
+    mars.orbit.rotation.y += (timeScale / marsOrbitalPeriod) * 2 * Math.PI;
+    jupiter.orbit.rotation.y += (timeScale / jupiterOrbitalPeriod) * 2 * Math.PI;
+    saturn.orbit.rotation.y += (timeScale / saturnOrbitalPeriod) * 2 * Math.PI;
+    uranus.orbit.rotation.y += (timeScale / uranusOrbitalPeriod) * 2 * Math.PI;
+    neptune.orbit.rotation.y += (timeScale / neptuneOrbitalPeriod) * 2 * Math.PI;
+    pluto.orbit.rotation.y += (timeScale / plutoOrbitalPeriod) * 2 * Math.PI;
 
     renderer.render(scene, camera);
 }
-
-
 animate();
