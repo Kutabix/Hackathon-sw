@@ -6,11 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solar System</title>
     <style>
+       @font-face {
+            font-family: 'Megatransdemo';
+            src: url('./fonts/MegatransdemoRegular-8M9B0.otf') format('opentype'); 
+        }
+
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Megatransdemo', sans-serif;
             color: white;
             background-color: black;
+        }
+
+        .object-panel ul li.active {
+            color: #ffcc00; 
+            font-weight: bold;
         }
 
         #infoPanel {
@@ -24,6 +34,7 @@
             padding: 10px;
             display: none;
             z-index: 10;
+            opacity: 12; 
         }
 
         h2 {
@@ -65,6 +76,8 @@
         .object-panel ul li:hover {
             background-color: rgba(255, 255, 255, 0.1);
         }
+
+        
     </style>
 </head>
 <body>
@@ -73,22 +86,27 @@
         <p id="planetInfo"></p>
     </div>
 
-    <div class="object-panel">
-        <h3>OBIEKTY</h3>
+    <div class="object-panel" id="objectPanel">
+        <h3>Planets<span id="closeButton" style="cursor: pointer; float: right;">✖</span></h3>
         <ul>
-            <li onclick="selectPlanet('sun')">Słońce</li>
-            <li onclick="selectPlanet('mercury')">Merkury</li>
-            <li onclick="selectPlanet('venus')">Wenus</li>
-            <li onclick="selectPlanet('earth')">Ziemia</li>
+            <li onclick="selectPlanet('sun')">Sun</li>
+            <li onclick="selectPlanet('mercury')">Mecury</li>
+            <li onclick="selectPlanet('venus')">Venus</li>
+            <li onclick="selectPlanet('earth')">Earth</li>
             <li onclick="selectPlanet('mars')">Mars</li>
-            <li onclick="selectPlanet('jupiter')">Jowisz</li>
+            <li onclick="selectPlanet('jupiter')">Jupiter</li>
             <li onclick="selectPlanet('saturn')">Saturn</li>
             <li onclick="selectPlanet('uranus')">Uran</li>
             <li onclick="selectPlanet('neptune')">Neptun</li>
-            <li onclick="selectPlanet('pluto')">Pluton</li>
+            <li onclick="selectPlanet('pluto')">Pluto</li>
         </ul>
     </div>
 
+    <div id="openButton" style="display: none; position: absolute; bottom: 10px; right: 10px; background-color: rgba(0, 0, 0, 0.7); color: white; padding: 5px; border: 1px solid white; cursor: pointer;">
+        <span>OBJECTS</span>
+    </div>
+
     <script src="./js/scripts.js" type="module"></script>
+    <script src="./js/closeList.js"></script>
 </body>
 </html>
