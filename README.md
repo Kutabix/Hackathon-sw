@@ -2,6 +2,8 @@
 
 An interactive 3D "orrery" (digital planetarium) developed during the **NASA Space Apps Challenge** in Stalowa Wola. The project visualizes our Solar System, allowing users to explore planets, orbits, and celestial mechanics in a web browser.
 
+![Unity Editor View](screenshots/ss.jpg)
+
 ## Features
 
 - **Interactive Orbits:** Realistic representation of planetary orbits, showing the movement of planets around the Sun.
