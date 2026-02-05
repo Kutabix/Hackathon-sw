@@ -1,6 +1,6 @@
 # Solar System Visualization
 
-This project is an interactive 3D visualization of the Solar System, often referred to as an "orrery" or a digital planetarium. It allows users to explore the planets and their orbits around the Sun, providing a realistic representation of the size, distance, and movement of each celestial body.
+An interactive 3D "orrery" (digital planetarium) developed during the **NASA Space Apps Challenge** in Stalowa Wola. The project visualizes our Solar System, allowing users to explore planets, orbits, and celestial mechanics in a web browser.
 
 ## Features
 
